@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Codecool Shop</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+
+</head>
+
+<body>
+
+<div th:replace="header.html :: copy"></div>
+<div th:replace="navbar.html :: copy"></div>
+
+<div class="container">
+    <div class="container">
+        <h1 class="text-center">User Details</h1>
+        <div class="card mb-3 mt-3 p-3" style="width: 600px;margin: 0 auto;">
+            <div th:if="${dataChanged == true}" class="alert alert-success text-center" role="alert">
+                Details updated successfully!
+            </div>
+            <form action="/user-details" method="post">
+                <div class="card mb-3 mt-3 p-3">
+                    <div class="mb-3">
+                        <label for="full-name" class="form-label">Full name</label>
+                        <input type="full-name" class="form-control" id="full-name" placeholder="e.g. Kiss Pista" name="full-name" th:value="${user.fullName != '' ? user.fullName : ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="e.g. name@example.com" name="email" th:value="${user.email != '' ? user.email : ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone number</label>
+                        <input type="text" class="form-control" id="phone" placeholder="e.g. +36 30 1234567" name="phone" th:value="${user.phone != '' ? user.phone : ''}">
+                    </div>
+                </div>
+
+                <div class="card mb-3 mt-3 p-3">
+                    <div class="mb-3">
+                        <label for="billing_street" class="form-label">Billing Street</label>
+                        <input type="text" class="form-control" id="billing_street" placeholder="e.g. 22 Kossuth street" name="billing_street" th:value="${user.billing_street != '' ? user.billing_street : ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="billing_city" class="form-label">Billing City</label>
+                        <input type="text" class="form-control" id="billing_city" placeholder="e.g. Miskolc" name="billing_city" th:value="${user.billing_city != '' ? user.billing_city : ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="billing_country" class="form-label">Billing Country</label>
+                        <input type="text" class="form-control" id="billing_country" placeholder="e.g. Hungary" name="billing_country" th:value="${user.billing_country != '' ? user.billing_country : ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="billing_zip" class="form-label">Billing Zip</label>
+                        <input type="text" class="form-control" id="billing_zip" placeholder="e.g. 3567" name="billing_zip" th:value="${user.billing_zip != '' ? user.billing_zip : ''}">
+                    </div>
+                </div>
+
+                <div class="card mb-3 mt-3 p-3">
+                    <div class="mb-3">
+                        <label for="Shipping_street" class="form-label">Shipping Street</label>
+                        <input type="text" class="form-control" id="Shipping_street" placeholder="e.g. 22 Kossuth street" name="shipping_street" th:value="${user.shipping_street != '' ? user.shipping_street : ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Shipping_city" class="form-label">Shipping City</label>
+                        <input type="text" class="form-control" id="Shipping_city" placeholder="e.g. Miskolc" name="shipping_city" th:value="${user.shipping_city != '' ? user.shipping_city : ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Shipping_country" class="form-label">Shipping Country</label>
+                        <input type="text" class="form-control" id="Shipping_country" placeholder="e.g. Hungary" name="shipping_country" th:value="${user.shipping_country != '' ? user.shipping_country : ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Shipping_zip" class="form-label">Shipping Zip</label>
+                        <input type="text" class="form-control" id="Shipping_zip" placeholder="e.g. 3567" name="shipping_zip" th:value="${user.shipping_zip != '' ? user.shipping_zip : ''}">
+                    </div>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-success">Update Details</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="footer.html :: copy"></div>
+
+</body>
+</html>

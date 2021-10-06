@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Codecool Shop</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/payment.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+
+<div th:replace="header.html :: copy"></div>
+
+<div class="container">
+    <div class="card mb-3 mt-3">
+        <div class="container py-5">
+            <!-- For demo purpose -->
+            <div class="row mb-4">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-6" th:text="${'Total price to pay: ' + totalPrice + ' USD'}">Total...</h1>
+                </div>
+            </div> <!-- End -->
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="card ">
+                        <div class="card-header">
+                            <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                                <!-- Credit card form tabs -->
+                                <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                                    <li class="nav-item"> <a data-toggle="pill" href="#credit-card" class="nav-link active "> <i class="fas fa-credit-card mr-2"></i> Credit Card </a> </li>
+                                    <li class="nav-item"> <a data-toggle="pill" href="#paypal" class="nav-link "> <i class="fab fa-paypal mr-2"></i> Paypal </a> </li>
+                                </ul>
+                            </div> <!-- End -->
+                            <!-- Credit card form content -->
+                            <div class="tab-content">
+                                <!-- credit card info-->
+                                <div id="credit-card" class="tab-pane fade show active pt-3">
+                                    <form role="form" action="/payment" method="post">
+                                        <input type="hidden" name="payment-type" value="credit-card">
+                                        <div class="form-group"> <label for="username">
+                                            <h6>Card Owner</h6>
+                                        </label> <input type="text" name="cardOwnerName" placeholder="Card Owner Name" required class="form-control "> </div>
+                                        <div class="form-group"> <label for="cardNumber">
+                                            <h6>Card number</h6>
+                                        </label>
+                                            <div class="input-group"> <input id="cardNumber" type="text" name="cardNumber" placeholder="Valid card number" class="form-control " required>
+                                                <div class="input-group-append"> <span class="input-group-text text-muted"> <i class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i class="fab fa-cc-amex mx-1"></i> </span> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group"> <label><span class="hidden-xs">
+                                                    <h6>Expiration Date</h6>
+                                                </span></label>
+                                                    <div class="input-group"> <input type="number" placeholder="MM" name="expirationDate" class="form-control" required> <input type="number" placeholder="YY" name="" class="form-control" required> </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group mb-4"> <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
+                                                    <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                                                </label> <input name="CVS" type="text" required class="form-control"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check" style="margin-bottom: 20px;">
+                                            <input class="form-check-input" name="error-checkbox" type="checkbox" value="true" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Make payment with error
+                                            </label>
+                                        </div>
+                                        <div class="card-footer"> <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm"> Confirm Payment </button></div>
+                                    </form>
+                            </div> <!-- End -->
+                            <!-- Paypal info -->
+                            <div id="paypal" class="tab-pane fade pt-3">
+                                <form role="form" action="/payment" method="POST">
+                                    <input type="hidden" name="payment-type" value="paypal">
+                                    <div class="form-group"> <label for="username">
+                                        <h6>Email</h6>
+                                    </label> <input type="text" name="email" id="username" placeholder="E-mail address" required class="form-control "> </div>
+                                    <div class="form-group"> <label for="username2">
+                                        <h6>Password</h6>
+                                    </label> <input type="password" name="password" id="username2" placeholder="Password" required class="form-control "> </div>
+                                    <div class="form-check" style="margin-bottom: 20px;">
+                                        <input class="form-check-input" name="error-checkbox" type="checkbox" value="true" id="flexCheckDefault2">
+                                        <label class="form-check-label" for="flexCheckDefault2">
+                                            Make payment with error
+                                        </label>
+                                    </div>
+                                    <div class="card-footer"> <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm"> Confirm Payment </button></div>
+                                </form>
+                            </div> <!-- End -->
+                            <!-- End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="footer.html :: copy"></div>
+
+<!-- Credit Card Modal -->
+<div class="modal fade" id="creditCardModal" tabindex="-1" aria-labelledby="creditCardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
